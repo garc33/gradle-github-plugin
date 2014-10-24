@@ -1,0 +1,34 @@
+buildscript {
+    repositories{
+        mavenCentral()
+        maven{ url = 'https://repo.eclipse.org/content/repositories/egit-releases/' }
+        maven{ url = 'https://raw.github.com/garc33/m2p2-repository/mvn-repo/maven/releases/' }
+    }
+    dependencies { classpath "fr.herman.gradle.plugins:gradle-github-plugin:1.0" }
+}
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'github'
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    maven{ url = 'https://repo.eclipse.org/content/repositories/egit-releases/' }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'org.eclipse.mylyn.github:org.eclipse.egit.github.core:3.1.0.201310021548-r'
+    compile 'com.google.code.gson:gson:2.2.2'
+}
+
+github {
+    username = 'garc33'
+    repo = 'm2p2-repository'
+    branch = 'mvn-repo'
+}
+
+group 'fr.herman.gradle.plugins'
